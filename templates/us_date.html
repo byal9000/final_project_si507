@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class='centered'>
+    <h1>National Data for the US</h1>
+    <br />
+    <br />
+</div>
+{% if date_data|length == 0 %}
+<h2>You need to input a valid date, or select it using the selector <a href='/us'>here</a>.</h2>
+{% else %}
+<table class='center'>
+    <tr>
+
+        {% for i in range(order|length) %}
+        {% if order[i] in date_data[0].keys() %}
+        <th>
+            {{names[i]}}
+        </th>
+        {% endif %}
+        {% endfor %}
+    </tr>
+
+    <tr>
+        {% for i in range(order|length) %}
+        {% if order[i] in date_data[0].keys() %}
+        <th>
+            {{date_data[0][order[i]]}}
+        </th>
+        {% endif %}
+        {% endfor %}
+    </tr>
+</table>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<style>
+    .header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        background-color: white;
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        margin-left: 50px;
+        line-height: 0.6;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .content {
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 75px;
+        margin-bottom: 100px;
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .centered {
+        text-align: center;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+
+    table.center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<head>
+    <meta charset="utf8" />
+    <title>Exploring Covid-19</title>
+</head>
+
+<body>
+    <div class="header">
+        <h3>Chris Plotts – Exploring Covid-19 Data – SI 507 Final Project</h3>
+    </div>
+    <div class="content">
+        {% block content %} {% endblock content %}
+    </div>
+    <div class="footer">
+        <p>Population data sourced from the United States Census <a
+                href='https://www.census.gov/data/developers/data-sets/popest-popproj/popest.html'>Population
+                Estimates API</a>.</p>
+        <p><a href='https://github.com/nytimes/covid-19-data'>Covid-19 data</a> from The New York Times, based on
+            reports from state and local health agencies.</p>
+    </div>
+</body>
+
+</html>

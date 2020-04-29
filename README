@@ -1,0 +1,14 @@
+The Census API key required by this program is stored in a separate file:
+secrets.py
+
+It is stored in a variable named:
+API_KEY
+
+The packages required to run this program are:
+requests
+secrets
+sqlite3
+datetime
+json
+plotly
+flask

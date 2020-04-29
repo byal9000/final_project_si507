@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class='centered'>
+    <h1>National Data for the US</h1>
+    <br />
+    <br />
+</div>
+{% if graph_div|length == 0 %}
+<h2>You need to input a valid graph type, or select it using the selector <a href='/us'>here</a>.</h2>
+{% else %}
+{{graph_div | safe}}
+{% endif %}
+{% endblock content %}

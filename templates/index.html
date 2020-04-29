@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class='centered'>
+    <h1>
+        <br /><br /><br />Welcome to my SI 507 Final Project.
+    </h1>
+</div>
+<br /><br />
+<p>Let's explore some data involving Covid-19 and the US Population.</p>
+<p>We have data at three levels. The US level covers data aggregated accross the whole country. The state level
+    allows looking at statistics by state, or comparisons between states. Finally, the county level will let you
+    examine specific counties or compare counties within a state.</p>
+<p>Are you interested in looking at the <a href="us">US</a> as a whole, at <a href="state">states</a>, or at counties?
+    <br /><br /><br />
+    For counties, please select a state here to continue:<br />
+    <form action="/county/state_selector" method="POST">
+        <select name="state">
+            {% for st in states %}
+            {%if st in state_dict.keys()%}
+            <option value="{{st}}">{{state_dict[st]}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <br /><br />
+        <input type="submit" value="Let's Go!" />
+    </form>
+</p>
+{% endblock content %}

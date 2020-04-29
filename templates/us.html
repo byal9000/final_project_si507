@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="/us/date_results" method="POST">
+    <p>If you would like to view statistics from a particular day, please select one to view here (only days with
+        reportable data presented):<br /><br />
+        <select name="date">
+            {% for covid_date in dates %}
+            <option value="{{covid_date}}">{{covid_date}}</option>
+            {% endfor %}
+        </select>
+        <br /><br />
+        <input type="submit" value="Let's Go!"/>
+    </p>
+</form>
+
+<form action="/us/graph_results" method="POST">
+    <p>Select if you would like to view a graph for postive tests, deaths, or both over time:<br /><br />
+        <select name="graph">
+            <option value="cases">Cases</option>
+            <option value="deaths">Deaths</option>
+            <option value="both">Both</option>
+        </select>
+        <br /><br />
+        <input type="submit" value="Let's Go!"/>
+    </p>
+</form>
+{% endblock content %}

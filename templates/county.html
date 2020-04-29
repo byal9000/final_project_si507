@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<div class='centered'>
+    <h1>County Data for {{state_dict[state]}}</h1>
+    <br />
+    <br />
+</div>
+<form action="/county/date_results/{{state}}" method="POST">
+    <p>If you would like to explore the details of a particular county, please select a county and date.<br />Note: Dates
+        prior to reported data in that county will default to the first available data.<br /><br />
+        <select name="county">
+            {% for co in counties %}
+            {%if co in county_dict.keys()%}
+            <option value="{{co}}">{{county_dict[co]}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <br /><br />
+
+        <select name="date">
+            {% for covid_date in dates %}
+            <option value="{{covid_date}}">{{covid_date}}</option>
+            {% endfor %}
+        </select>
+        <br /><br />
+        <input type="submit" value="Let's Go!" />
+    </p>
+</form>
+
+<form action="/county/county_compare/{{state}}" method="POST">
+    <p>Select here to view a graph comparing counties along a number of dimensions:<br /><br />
+        <select name="comparison">
+            <option value="cases desc">Most cases</option>
+            <option value="deaths desc">Most deaths</option>
+            <option value="pop desc">Highest population</option>
+            <option value="density desc">Highest density</option>
+            <option value="cases asc">Fewest cases</option>
+            <option value="deaths asc">Fewest deaths</option>
+            <option value="pop asc">Lowest population</option>
+            <option value="density asc">Lowest density</option>
+        </select>
+        <br /><br />
+        <select name="yaxis">
+            <option value="cases">Cases</option>
+            <option value="deaths">Deaths</option>
+        </select>
+        <br /><br />
+        <input type="submit" value="Let's Go!" />
+    </p>
+</form>
+{% endblock content %}

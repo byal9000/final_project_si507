@@ -8,7 +8,7 @@ import secrets
 import sqlite3
 import datetime
 import json
-import sys
+# import sys
 
 NYT_COVID19_BASE = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/'
 NYT_INT_LIST = ['cases', 'deaths']
@@ -76,8 +76,10 @@ def get_covid_data(connection, cursor, timings, table, covid_url, parameters=Non
         cmd = "DROP TABLE " + table + ";"
         cursor.execute(cmd)
         connection.commit()
+        timings = get_table_timings(connection, cursor)
         load_covid_data(connection, cursor, table, covid_url)
         timings = get_table_timings(connection, cursor)
+        
 
     cmd = "SELECT * FROM " + table + ";"
     data = cursor.execute(cmd).fetchall()
@@ -180,7 +182,7 @@ def get_census_data(connection, cursor, timings, table, census_url, get_params, 
     return timings, data
 
 
-def main_loop():
+def main_data_setup():
     conn = sqlite3.connect(PROJECT_DATABASE_NAME)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
@@ -201,10 +203,11 @@ def main_loop():
                                                    CENSUS_POP_BASE, 'POP,DENSITY,NAME', 'county:*')
 
     conn.close()                                                   
+    # return (covid_us, covid_state, covid_county, census_us, census_state, census_county)
     return
 
 
 if __name__ == "__main__":
-    main_loop()
+    main_data_setup()
 
     print('Exiting...')
